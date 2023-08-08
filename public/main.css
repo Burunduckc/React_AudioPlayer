@@ -1,0 +1,139 @@
+*{
+    font-family: 'Space Grotesk';
+    margin: 0;
+}
+.container {
+    width: 1336px;
+    margin: 0 auto;
+}
+
+.main{
+    background: #EEE;
+}
+
+.main__header{
+    font-size: 48px;
+    font-weight: 400;
+    padding-top: 40px;
+}
+.main__subheader{
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: 300;
+
+}
+.main__endheader{
+    margin-top: 182px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #1B191C;
+}
+.main__endheader a{
+    color: #1B191C;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+}
+.techical{
+    background-color: #1B191C;
+    padding-top: 120px;
+}
+.techical__h2{
+    color: #F5F6F7;
+    font-size: 48px;
+}
+.techical__p{
+    color: #EEE;
+    line-height: 32px;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 300;
+}
+.techical__req-q{
+    color: #EEE;
+    margin-bottom: 40px;
+}
+.techical__req{
+    margin-top: 120px;
+    font-size: 24px;
+}
+.techical__list{
+    display: flex;
+    list-style: none;
+    margin:0;
+    padding-left: 0;
+}
+.techical__li{
+    font-size: 24px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+.techical__li:last-child{
+    margin-right: 0;
+}
+.techical__li{
+    margin-right: 16px;
+}
+.active{
+    color: #F5F6F7;
+    border-bottom: 1px solid #EEE;
+}
+.techical__ul{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 0;
+}
+.techical__cont{
+    display: flex;
+    justify-content: space-between;
+}
+.techical__block{
+    display: flex;
+    width: 640px;
+    justify-content: space-between;
+    margin-top: 35px;
+    padding-bottom: 120px;
+}
+.techical__l{
+    position: relative;
+    color: #EEE;
+    list-style: none;
+    margin-bottom: 12px;
+    font-weight: 300;
+    font-size: 24px;
+}
+.techical__l:last-child{
+    margin-bottom: 0;
+}
+.techical__l span{
+    position: absolute;
+    display: block;
+    width: 640px;
+    height: 1px;
+    bottom: -5px;
+    background: rgba(207, 211, 214, 0.10);
+}
+.techical_n{
+    color: #EEE;
+    list-style: none;
+    font-weight: 300;
+    margin-bottom: 12px;
+    font-size: 24px;  
+}
+.techical_na{
+    color: #EEE;
+    list-style: none;
+    font-weight: 300;
+    margin-bottom: 12px;
+    font-size: 24px;  
+    width: 400px;
+}
+.techical_head{
+    display: flex;
+    justify-content: space-between;
+}
+.opacity{
+    display: none;
+}
