@@ -27,6 +27,7 @@
     font-size: 12px;
     font-weight: 300;
     color: #1B191C;
+    padding-bottom: 40px    ;
 }
 .main__endheader a{
     color: #1B191C;
@@ -34,6 +35,11 @@
     font-weight: 400;
     text-decoration: none;
 }
+
+.main__flex{
+    display: flex;
+}
+
 .techical{
     background-color: #1B191C;
     padding-top: 120px;
@@ -67,6 +73,8 @@
     font-size: 24px;
     margin-right: 16px;
     cursor: pointer;
+    color: #CFD3D6;
+    opacity: 0.4;
 }
 .techical__li:last-child{
     margin-right: 0;
@@ -77,6 +85,7 @@
 .active{
     color: #F5F6F7;
     border-bottom: 1px solid #EEE;
+    opacity: 1;
 }
 .techical__ul{
     display: flex;

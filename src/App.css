@@ -1,0 +1,11 @@
+.App{
+    margin-left: 261px;
+    margin-top: 171px;
+}
+.main__text{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.main__blockinput{
+    transition: 0.6s all;
+}

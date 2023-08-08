@@ -20,5 +20,3 @@ oneBlock[1].addEventListener('click', (e) => {
     }
 }
 })
-
-console.log(twoBlock)

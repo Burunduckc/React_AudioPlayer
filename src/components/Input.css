@@ -1,0 +1,32 @@
+.main__input{
+    border: none;
+    width: 430px;
+    padding: 32px 16px;
+}
+.main__button{
+    background: #F8D231;
+    width: 96px;
+    height: 96px;
+    border: none;
+    cursor: pointer;
+}
+.main__form{
+    display: flex;
+}
+.main__input::placeholder{
+    font-size: 24px;
+    font-weight: 300;
+    color: #A4A3A4;
+}
+.main__sos{
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1B191C;
+    transition: 0.2s all;
+    cursor: pointer;
+    width: 100px;
+}
+.main_error{
+    margin-top: 8px;
+    color: #C6A827;
+}
