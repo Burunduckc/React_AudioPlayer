@@ -25,8 +25,9 @@ export const FullInput: React.FC<proprs> = ({value, err, show, sta}) => {
     }
   })
   return (
-    <audio controls preload='auto'>
+    //@ts-ignore
+    <video controls preload='auto' name="media" className='main__video'>
     <source src={`${value}`} type='audio/mpeg'/>
-    </audio>
+    </video>
   )
 }

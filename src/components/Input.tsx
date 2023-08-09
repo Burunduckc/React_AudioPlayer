@@ -52,7 +52,7 @@ export const Input = () => {
                 </button>
                 </form>
         }
-        {error && <p className='main_error'>Error message here</p>}
+        {error && <p className='main_error'>Invalid URL</p>}
         {state && <FullInput value={value} show={setSubState} err={setError} sta={setState}/>}
     </div>
   )

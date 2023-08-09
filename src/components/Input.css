@@ -39,3 +39,7 @@
 .err{
     border: 1px solid #C6A827;
 }
+.main__video{
+    width: 610px;
+    height: 198px;
+}
