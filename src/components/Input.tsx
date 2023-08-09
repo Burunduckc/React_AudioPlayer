@@ -1,34 +1,25 @@
 import React from 'react'
 import arrow from '../assets/icon.svg'
 import './Input.css'
-import axios from 'axios'
 import { FullInput } from './fullInput'
 
 export const Input = () => {
     const [value, setValue] = React.useState<string>('')
     const [state, setState] = React.useState(false)
+    const [error, setError] = React.useState(false)
     const [subState, setSubState] = React.useState(true)
-    const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-    }
     const inp = React.useRef() as React.MutableRefObject<HTMLInputElement>; 
     console.log(inp.current?.value)
 
     const onSumbitForm = async(e: React.SyntheticEvent) => {
         setValue(inp.current?.value)
         e.preventDefault()
-        try {
-            const {data} = await axios.get(`${value}`)
-            return data
-        } catch (error) {
-            alert('Ошибка!')
-        }
     }
 
     React.useEffect(() => {
-        if(value.length > 3 && value.includes('https://')){
-        setState(true)
-        setSubState(false)
+        if(value.includes('https://') || value){
+            setState(true)
+            setSubState(false)
         } else{
             setState(false)
             setSubState(true)
@@ -37,7 +28,10 @@ export const Input = () => {
 
 
     const set = () => {
-        setValue('')
+        setState(false)
+        setSubState(true)
+        setError(false)
+        console.log(error)
     }
 
     return (
@@ -45,7 +39,7 @@ export const Input = () => {
         {subState ? <p className='main__text'>Insert the link</p>  : <p className='main__sos' onClick={() => set()}>← Back</p>}
         { subState && 
                 <form 
-                action="" 
+                action=""
                 className='main__form'
                 onSubmit={(e) => onSumbitForm(e)}>
                 <input type="text" 
@@ -58,8 +52,8 @@ export const Input = () => {
                 </button>
                 </form>
         }
-        {inp.current?.value.includes('https://') ? <p></p>:<p className='main__error'>Error message here</p>}
-        {state && <FullInput value={value}/>}
+        {error && <p className='main_error'>Error message here</p>}
+        {state && <FullInput value={value} show={setSubState} err={setError} sta={setState}/>}
     </div>
   )
 }
