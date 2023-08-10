@@ -1,43 +1,52 @@
 import React from 'react'
 import arrow from '../assets/icon.svg'
+import close from '../assets/close.svg'
+import warning from '../assets/warning.svg'
 import './Input.css'
 import { FullInput } from './fullInput'
 
+
 export const Input = () => {
     const [value, setValue] = React.useState<string>('')
-    const [state, setState] = React.useState(false)
+    const [showAudio, setShowAudio] = React.useState(false)
     const [error, setError] = React.useState(false)
-    const [subState, setSubState] = React.useState(true)
+    const [changeForm, setChangeForm] = React.useState(true)
     const inp = React.useRef() as React.MutableRefObject<HTMLInputElement>; 
-    console.log(inp.current?.value)
+
 
     const onSumbitForm = async(e: React.SyntheticEvent) => {
         setValue(inp.current?.value)
         e.preventDefault()
+       console.log(localStorage.getItem('searchHistory')) 
     }
 
     React.useEffect(() => {
-        if(value.includes('https://') || value){
-            setState(true)
-            setSubState(false)
+        if((value.indexOf('https://') && value.length > 1) || value.length > 1){
+            setShowAudio(true)
+            setChangeForm(false)
         } else{
-            setState(false)
-            setSubState(true)
+            setShowAudio(false)
+            setChangeForm(true)
         }
     }, [value])
 
 
-    const set = () => {
-        setState(false)
-        setSubState(true)
+    const clear = () => {
+        setShowAudio(false)
+        setChangeForm(true)
         setError(false)
+        setValue('')
         console.log(error)
+    }
+
+    const clearError = () => {
+        setError(false)
     }
 
     return (
     <div className='main__blockinput'>
-        {subState ? <p className='main__text'>Insert the link</p>  : <p className='main__sos' onClick={() => set()}>← Back</p>}
-        { subState && 
+        {changeForm ? <p className='main__text'>Insert the link</p>  : <p className='main__sos' onClick={() => clear()}>← Back</p>}
+        { changeForm && 
                 <form 
                 action=""
                 className='main__form'
@@ -52,8 +61,21 @@ export const Input = () => {
                 </button>
                 </form>
         }
-        {error && <p className='main_error'>Invalid URL</p>}
-        {state && <FullInput value={value} show={setSubState} err={setError} sta={setState}/>}
+        {error && <div className='main__blockError'>
+            <div className='main__blockErrorTop'>
+                <div className='main__yellowBlock'>
+                    <img src={warning} alt='warning'/>
+                </div>
+                <div className='main__textBlock'>
+                    <p>Warning</p>
+                    <p>Invalid URL</p>
+                </div>
+            </div>
+            <div className='main__close' onClick={() => clearError()}>
+                    <img src={close} alt="btnForHide" />
+            </div>
+        </div>}
+        {showAudio && <FullInput value={value} showForm={setChangeForm} err={setError} showAudio={setShowAudio}/>}
     </div>
   )
 }

@@ -1,0 +1,94 @@
+.progress_bar{
+    height: 4px;
+    width: 570px;
+    background: #ADACAD;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.progressed{
+    width: 50%;
+    height: 4px;
+    background: #FFF;
+    border-radius: 6px;
+    transition: all 0.5s;
+    position: relative;
+}
+.progressed::after{
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -7px;
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    background-color: #FFF;
+}
+.player__btnBegin{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.player__btnStop{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.main__buttonBlock{
+    padding-top: 20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+input[type=range]  {
+    width: 200px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    overflow: hidden;
+    height: 7px;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    height: 7px;
+    background-color: #FFF;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    background: #ecf0f1;
+    cursor: pointer;
+    width:15px;
+    height: 15px;
+    -webkit-appearance: none;
+    margin-top: -4px;
+    box-shadow: -200px  0 0 200px  black;
+  }
+
+  input[type=range]::-moz-range-track {
+      height: 7px;
+      background-color: #FFF;
+  }
+
+
+ input[type=range]::-moz-range-thumb {
+    background: #ecf0f1;
+    cursor: pointer;
+    height: 7px;
+    border-radius:0px;
+    box-shadow: -200px  0px 0px 200px   black;
+    padding: 0px;
+    margin: 0px;
+  }
+  .main__blockForEnd{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 45px;
+  }
+  .main__textforend{
+    display: flex;
+    margin-left: 20px;
+  }
+  .main__forbtns{
+
+  }

@@ -40,6 +40,30 @@
     border: 1px solid #C6A827;
 }
 .main__video{
+    background: #CFD3D6;
     width: 610px;
     height: 198px;
+}
+.main__blockError{
+    display: flex;
+    width: 518px;
+    justify-content: space-between;
+    position: absolute;
+    top: 8%;
+    left:50%;
+    border: 0.5px solid #E6E6E6;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    transform:translate(-50%, -50%);
+    padding: 20px;
+    margin-top: 8px;
+}
+.main__blockErrorTop{
+    display: flex;
+}
+.main__textBlock{
+    margin-left: 12px;
+}
+.main__close{
+    cursor: pointer;
 }
