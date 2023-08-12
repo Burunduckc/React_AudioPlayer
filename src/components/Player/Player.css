@@ -27,11 +27,17 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: none;
 }
 .player__btnStop{
     width: 40px;
     height: 40px;
     cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: none;
 }
 .main__buttonBlock{
     padding-top: 20px;
