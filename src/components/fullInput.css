@@ -89,6 +89,8 @@ input[type=range]  {
     display: flex;
     margin-left: 20px;
   }
-  .main__forbtns{
-
+  @media (max-width: 500px) {
+        .progress_bar{
+        width: 267px;
+    }
   }

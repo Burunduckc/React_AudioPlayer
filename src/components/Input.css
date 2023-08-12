@@ -67,3 +67,8 @@
 .main__close{
     cursor: pointer;
 }
+@media (max-width: 500px) {
+    .main__video{
+        width: 301px;
+    }
+}
