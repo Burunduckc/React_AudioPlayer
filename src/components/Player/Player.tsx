@@ -2,20 +2,20 @@
 import React from 'react'
 //UI
 import { ButtonForPlay } from '../UI/Button/Button'
-//Styles
-import './Player.css'
 import { ProgressBar } from '../UI/ProgressBar/ProgressBar'
 import { Volume } from '../UI/Volume/Volume'
 import { TimeOfAudio } from '../UI/TimeOfAudio/TimeOfAudio'
 import { Music } from '../UI/Music/Music'
+//Styles
+import './Player.css'
 //Types
 interface proprs{
     value: string,
-    err: (e: boolean) => void,
+    changeErrorMessage: (e: boolean) => void,
     switchShowElements: (e: boolean) => void
   }
 //Component
-export const Player: React.FC<proprs> = ({value, err, switchShowElements}) => {
+export const Player: React.FC<proprs> = ({value, changeErrorMessage, switchShowElements}) => {
   const [changeButton, setChangeButton] = React.useState(false)
   const [minutes, setMinutes] = React.useState(0)
   const [seconds, setSeconds] = React.useState(0)
@@ -30,22 +30,17 @@ export const Player: React.FC<proprs> = ({value, err, switchShowElements}) => {
   React.useEffect(() => {
     audioObj.addEventListener('loadstart', async() => {
       try {
-        audioObj.addEventListener('loadeddata', () => {
-          console.log('Заработало')
-          err(false)
-        })
         audioObj.addEventListener('error', () => {
-          console.log('Ошибка')
-          err(true)
+          changeErrorMessage(true)
           switchShowElements(true)
         })
-      } catch (error) {
-      }
+      } catch (error) {}
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
-  //Functions
+  //Functions For player
+
   //change time
   const duration = () => {
     const currTime = Math.floor(audioElement.current.currentTime)

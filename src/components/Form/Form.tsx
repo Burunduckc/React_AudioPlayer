@@ -9,7 +9,7 @@ interface formIP {
 
 export const Form: React.FC<formIP> = ({submitFormHandler, userLink, changeUserLink, arrowSrc}) => {
   return (
-    <form 
+                    <form 
                     action=""
                     className='main__form'
                     onSubmit={submitFormHandler}

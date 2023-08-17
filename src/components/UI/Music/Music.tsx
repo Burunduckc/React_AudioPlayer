@@ -6,7 +6,7 @@ interface musicIP{
 }
 
 export const Music: React.FC<musicIP> = ({audioElement, value}) => {
-  return (
+  return (  
     <audio ref={audioElement} preload='auto' id='audio-player'>
     <source src={`${value}`} type='audio/mpeg'/>
     </audio>

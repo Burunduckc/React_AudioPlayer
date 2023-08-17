@@ -8,6 +8,7 @@ import arrow from '../../assets/icon.svg'
 import close from '../../assets/close.svg'
 import warning from '../../assets/warning.svg'
 import './Input.css'
+import { LocalHistory } from '../UI/History/LocalHistoryUser'
 
 export const Input = () => {
     const [userLink, setUserLink] = React.useState<string>('')
@@ -19,11 +20,24 @@ export const Input = () => {
         event.preventDefault()
         if(userLink.trim().length && userLink.indexOf('https://') === 0){
         setViewAudio(false)
+        saveSearchHistory(userLink)
         } else {
         setViewAudio(true)
         setErrorMessage(true)
         }
     }
+
+    const saveSearchHistory = (search: string) => {
+        const searchHistoryString = localStorage.getItem('searchHistory');
+        let searchHistory = searchHistoryString !== null ? JSON.parse(searchHistoryString) : [];      
+        searchHistory.unshift(search);
+    
+        if (searchHistory.length > 4) {
+          searchHistory = searchHistory.slice(0, 4);
+        }
+    
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+      };
 
 
     const returnToForm = () => {
@@ -49,6 +63,7 @@ export const Input = () => {
                     changeUserLink={changeInputValue}
                     arrowSrc={arrow}
                     />
+                    <LocalHistory/>
             </> 
             )
             : 
@@ -57,7 +72,7 @@ export const Input = () => {
                     <p className='main__sos' onClick={() => returnToForm()}>← Back</p>
                     <Player 
                     value={userLink} 
-                    err={setErrorMessage} 
+                    changeErrorMessage={setErrorMessage} 
                     switchShowElements = {setViewAudio}
                     />
                 </>       
