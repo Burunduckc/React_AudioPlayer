@@ -1,29 +1,25 @@
-import React from 'react'
-
-import { ErrorMessage } from '../UI/ErrorMessage/ErrorMessage'
-import { Form } from '../Form/Form'
-import { Player } from '../Player/Player'
-
-import arrow from '../../assets/icon.svg'
-import close from '../../assets/close.svg'
-import warning from '../../assets/warning.svg'
+//React
+import React, {ChangeEvent, useState, SyntheticEvent} from 'react'
+//UI
+import { ErrorMessage, Form, Player, LocalHistory } from '../imports'
+//styles
 import './Input.css'
-import { LocalHistory } from '../UI/History/LocalHistoryUser'
 
 export const Input = () => {
-    const [userLink, setUserLink] = React.useState<string>('')
-    const [viewAudio, setViewAudio] = React.useState<boolean>(true)
-    const [errorMessage, setErrorMessage] = React.useState(false)
+    const [userLink, setUserLink] = useState<string>('')
+    const [viewAudio, setViewAudio] = useState<boolean>(true)
+    const [errorMessage, setErrorMessage] = useState(false)
 
 
-    const sumbitFormHendler = (event: React.SyntheticEvent) => {
+    const sumbitFormHendler = (event: SyntheticEvent) => {
+        
         event.preventDefault()
         if(userLink.trim().length && userLink.indexOf('https://') === 0){
-        setViewAudio(false)
-        saveSearchHistory(userLink)
+            setViewAudio(false)
+            saveSearchHistory(userLink)
         } else {
-        setViewAudio(true)
-        setErrorMessage(true)
+            setViewAudio(true)
+            setErrorMessage(true)
         }
     }
 
@@ -31,11 +27,11 @@ export const Input = () => {
         const searchHistoryString = localStorage.getItem('searchHistory');
         let searchHistory = searchHistoryString !== null ? JSON.parse(searchHistoryString) : [];      
         searchHistory.unshift(search);
-    
+
         if (searchHistory.length > 4) {
           searchHistory = searchHistory.slice(0, 4);
         }
-    
+
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
       };
 
@@ -48,37 +44,36 @@ export const Input = () => {
 
     const clearErrorMessage = () => setErrorMessage(false)
 
-    const changeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => setUserLink(event.target.value)
+    const changeInputValue = (event: ChangeEvent<HTMLInputElement>) => setUserLink(event.target.value)
 
     return (
     <div className='main__blockinput'>
         {
             viewAudio 
             ? (
-            <>
-                <p className='main__text'>Insert the link</p>  
+        <>
+            <p className='main__text'>Insert the link</p>  
                     <Form 
                     submitFormHandler={sumbitFormHendler}
                     userLink={userLink}
                     changeUserLink={changeInputValue}
-                    arrowSrc={arrow}
                     />
-                    <LocalHistory/>
-            </> 
+            <LocalHistory/>
+        </> 
             )
             : 
             ( 
                 <>
                     <p className='main__sos' onClick={() => returnToForm()}>← Back</p>
-                    <Player 
-                    value={userLink} 
-                    changeErrorMessage={setErrorMessage} 
-                    switchShowElements = {setViewAudio}
-                    />
+                        <Player 
+                        value={userLink} 
+                        changeErrorMessage={setErrorMessage} 
+                        switchShowElements = {setViewAudio}
+                        />
                 </>       
                   )
         } 
-        {errorMessage && <ErrorMessage warningSrc={warning} closeSrc={close} onclick={clearErrorMessage}/>}
+        {errorMessage && <ErrorMessage onclick={clearErrorMessage}/>}
     </div>
   )
 }

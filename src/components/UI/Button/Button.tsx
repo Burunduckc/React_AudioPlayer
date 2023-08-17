@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, {FC} from 'react'
+//Img
 import btnBegin  from '../../../assets/Play.svg'
 import btnStop from '../../../assets/Pause.svg'
 
@@ -10,7 +10,7 @@ interface BtnIP{
 }
 
 
-export const ButtonForPlay: React.FC<BtnIP> = ({onclick, typeOfButton}) => {
+export const ButtonForPlay: FC<BtnIP> = ({onclick, typeOfButton}) => {
     return (
         <button 
         onClick={() => onclick()}

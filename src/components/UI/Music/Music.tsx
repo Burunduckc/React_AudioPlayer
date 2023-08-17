@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {FC, MutableRefObject} from 'react'
 
 interface musicIP{
-    audioElement: React.MutableRefObject<HTMLAudioElement>,
+    audioElement: MutableRefObject<HTMLAudioElement>,
     value: string
 }
 
-export const Music: React.FC<musicIP> = ({audioElement, value}) => {
+export const Music: FC<musicIP> = ({audioElement, value}) => {
   return (  
     <audio ref={audioElement} preload='auto' id='audio-player'>
     <source src={`${value}`} type='audio/mpeg'/>

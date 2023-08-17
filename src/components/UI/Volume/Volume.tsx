@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {FC, ChangeEvent} from 'react'
 
 interface volumeIP{
-    changeVolumeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void
+    changeVolumeHandler: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Volume: React.FC<volumeIP> = ({changeVolumeHandler}) => {
+export const Volume: FC<volumeIP> = ({changeVolumeHandler}) => {
   return (
     <div className='main__range'>
        <input type="range" 

@@ -1,11 +1,7 @@
 //React
-import React from 'react'
+import React, {FC, useState, useRef, useEffect, MutableRefObject, MouseEvent, ChangeEvent} from 'react'
 //UI
-import { ButtonForPlay } from '../UI/Button/Button'
-import { ProgressBar } from '../UI/ProgressBar/ProgressBar'
-import { Volume } from '../UI/Volume/Volume'
-import { TimeOfAudio } from '../UI/TimeOfAudio/TimeOfAudio'
-import { Music } from '../UI/Music/Music'
+import { ButtonForPlay, Volume, TimeOfAudio, Music, ProgressBar } from '../imports'
 //Styles
 import './Player.css'
 //Types
@@ -15,19 +11,26 @@ interface proprs{
     switchShowElements: (e: boolean) => void
   }
 //Component
-export const Player: React.FC<proprs> = ({value, changeErrorMessage, switchShowElements}) => {
-  const [changeButton, setChangeButton] = React.useState(false)
-  const [minutes, setMinutes] = React.useState(0)
-  const [seconds, setSeconds] = React.useState(0)
-  const [widthOfDuration, setWidtOfDuration] = React.useState(0)
+export const Player: FC<proprs> = ({value, changeErrorMessage, switchShowElements}) => {
+  
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
+  const [widthOfDuration, setWidtOfDuration] = useState(0)
+  const [changeButton, setChangeButton] = useState(false)
+
+
   //Refs
-  const audioElement = React.useRef() as React.MutableRefObject<HTMLAudioElement>; 
-  const progressed = React.useRef<HTMLDivElement>(null)
-  const progressBar = React.useRef<HTMLDivElement>(null)
+  const audioElement = useRef() as MutableRefObject<HTMLAudioElement>; 
+  const progressed = useRef<HTMLDivElement>(null)
+  const progressBar = useRef<HTMLDivElement>(null)
+
+  //variables
+  const audioObj = new Audio(value);
+
 
   //Effects
   
-  React.useEffect(() => {
+  useEffect(() => {
     audioObj.addEventListener('loadstart', async() => {
       try {
         audioObj.addEventListener('error', () => {
@@ -67,21 +70,20 @@ export const Player: React.FC<proprs> = ({value, changeErrorMessage, switchShowE
     }
   }
 
-  const rewindMusicHendler = (event: React.MouseEvent<HTMLDivElement>) => {
+  const rewindMusicHendler = (event: MouseEvent<HTMLDivElement>) => {
     if(audioElement.current && progressBar.current && progressed.current){
       audioElement.current.currentTime = ((event.nativeEvent.offsetX / progressBar.current.offsetWidth) * audioElement.current.duration)
     } 
   }
 
   //Volume
-  const audioVolumeMusicHendler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const audioVolumeMusicHendler = (event: ChangeEvent<HTMLInputElement>) => {
     let v: number = +event.target.value
     if (audioElement.current) {
       audioElement.current.volume = v / 100;
     }
   }
 
-  const audioObj = new Audio(value);
 
   return (
     <div  className='main__video'>

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {FC, SyntheticEvent, ChangeEvent} from 'react'
+
+//img
+import arrow from '../../assets/icon.svg'
+
 
 interface formIP { 
-    submitFormHandler: (event: React.SyntheticEvent) => void,
+    submitFormHandler: (event: SyntheticEvent) => void,
     userLink: string,
-    changeUserLink: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    arrowSrc: string
+    changeUserLink: (event: ChangeEvent<HTMLInputElement>) => void,
 }
 
-export const Form: React.FC<formIP> = ({submitFormHandler, userLink, changeUserLink, arrowSrc}) => {
+export const Form: FC<formIP> = ({submitFormHandler, userLink, changeUserLink}) => {
   return (
                     <form 
                     action=""
@@ -22,7 +25,7 @@ export const Form: React.FC<formIP> = ({submitFormHandler, userLink, changeUserL
                         className='main__input'
                         />
                             <button type='submit' className='main__button'>
-                                <img src={arrowSrc} alt="arrow" />
+                                <img src={arrow} alt="arrow" />
                             </button>
                     </form>             
   )

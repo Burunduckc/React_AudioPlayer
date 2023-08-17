@@ -1,18 +1,21 @@
-import React from 'react'
+import React, {FC} from 'react'
+
+//Img
+import close from '../../../assets/close.svg'
+import warning from '../../../assets/warning.svg'
+
 
 interface errorPropsIP{
-    warningSrc : string,
-    closeSrc : string,
     onclick: () => void
 }
 
 
-export const ErrorMessage: React.FC<errorPropsIP> = ({warningSrc, closeSrc, onclick}) => {
+export const ErrorMessage: FC<errorPropsIP> = ({onclick}) => {
   return (
     <div className='main__blockError'>
             <div className='main__blockErrorTop'>
                 <div className='main__yellowBlock'>
-                    <img src={warningSrc} alt='warning'/>
+                    <img src={warning} alt='warning'/>
                 </div>
                 <div className='main__textBlock'>
                     <p>Warning</p>
@@ -20,7 +23,7 @@ export const ErrorMessage: React.FC<errorPropsIP> = ({warningSrc, closeSrc, oncl
                 </div>
             </div>
             <div className='main__close' onClick={() => onclick()}>
-                    <img src={closeSrc} alt="btnForHide" />
+                    <img src={close} alt="btnForHide" />
             </div>
         </div>
   )

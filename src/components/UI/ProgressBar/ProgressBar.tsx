@@ -1,13 +1,13 @@
-import React from 'react'
+import React, {RefObject, MouseEvent, FC} from 'react'
 
 interface progressIP{
-    progressBar: React.RefObject<HTMLDivElement>,
-    progressed: React.RefObject<HTMLDivElement>,
+    progressBar: RefObject<HTMLDivElement>,
+    progressed: RefObject<HTMLDivElement>,
     widthOfDuration: number,
-    onclick: (event: React.MouseEvent<HTMLDivElement>) => void
+    onclick: (event: MouseEvent<HTMLDivElement>) => void
 }
 
-export const ProgressBar: React.FC<progressIP> = ({progressBar,progressed,widthOfDuration,onclick}) => {
+export const ProgressBar: FC<progressIP> = ({progressBar,progressed,widthOfDuration,onclick}) => {
   return (
     <div
     className='progress_bar' 

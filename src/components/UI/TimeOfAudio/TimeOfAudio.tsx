@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {FC} from 'react'
 
 interface timeAudioIP{
     minutes: number,
     seconds: number
 }
 
-export const TimeOfAudio: React.FC<timeAudioIP> = ({minutes, seconds}) => {
+export const TimeOfAudio: FC<timeAudioIP> = ({minutes, seconds}) => {
   return (
     <div className='main__textforend'>
     <p>{minutes < 10 ? `0${minutes}` : minutes}:</p>
