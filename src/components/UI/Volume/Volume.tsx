@@ -1,18 +1,26 @@
-import React, {FC, ChangeEvent} from 'react'
+import React, {FC, ChangeEvent, MutableRefObject} from 'react'
 
 interface volumeIP{
-    changeVolumeHandler: (event: ChangeEvent<HTMLInputElement>) => void
+    element: MutableRefObject<HTMLAudioElement>
 }
 
-export const Volume: FC<volumeIP> = ({changeVolumeHandler}) => {
-  return (
-    <div className='main__range'>
-       <input type="range" 
-       min={0} 
-       max={100} 
-       onChange={changeVolumeHandler}
-       id='main__background'
-       />
-       </div>
-  )
+export const Volume: FC<volumeIP> = ({element}) => {
+
+    const audioVolumeMusicHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        let v: number = +event.target.value
+        if (element.current) {
+            element.current.volume = v / 100;
+        }
+    }
+
+    return (
+        <div className='main__range'>
+            <input type="range"
+                   min={0}
+                   max={100}
+                   onChange={audioVolumeMusicHandler}
+                   id='main__background'
+            />
+        </div>
+    )
 }

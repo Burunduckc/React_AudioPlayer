@@ -1,22 +1,53 @@
-import React, {FC} from 'react'
+import React, {FC, MutableRefObject} from 'react'
+//redux
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
 //Img
 import btnBegin  from '../../../assets/Play.svg'
 import btnStop from '../../../assets/Pause.svg'
+import {setChangeButton, setMinutes, setSeconds, setWidthOfDuration} from "../../../redux/slice/playerSlice";
 
 
 interface BtnIP{
-    onclick: () => void,
-    typeOfButton: boolean
+    element: MutableRefObject<HTMLAudioElement>
 }
 
 
-export const ButtonForPlay: FC<BtnIP> = ({onclick, typeOfButton}) => {
+export const ButtonForPlay: FC<BtnIP> = ({element}) => {
+    const dispatch = useAppDispatch()
+
+    const duration = () => {
+        const currTime = Math.floor(element.current.currentTime)
+        const minute = Math.floor(currTime / 60)
+        const second = currTime % 60
+        const width = Math.floor(currTime * 100 / element.current.duration)
+        dispatch(setMinutes(minute))
+        dispatch(setSeconds(second))
+        dispatch(setWidthOfDuration(width))
+    }
+    //Starts
+    const playMusicHandler = () => {
+        if (element.current) {
+            element.current.ontimeupdate = duration
+            element.current.play();
+            dispatch(setChangeButton())
+        }
+    }
+
+    const pauseMusicHandler = () => {
+        if (element.current) {
+            element.current.pause();
+            dispatch(setChangeButton())
+        }
+    }
+
+    const {changeButton} = useAppSelector(state => state.player)
+
     return (
-        <button 
-        onClick={() => onclick()}
-        className={`player__${typeOfButton ? 'btnStop' : 'btnBegin'}`}
+        <button
+            onClick={changeButton ? pauseMusicHandler  : playMusicHandler}
+            className={`player__${changeButton ? 'btnStop' : 'btnBegin'}`}
         >
-            <img src={typeOfButton ? btnStop : btnBegin} alt='ButtonForControlMusic'/>
+            <img src={changeButton ? btnStop : btnBegin} alt='ButtonForControlMusic'/>
         </button>
     )
 }

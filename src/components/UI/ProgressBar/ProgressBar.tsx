@@ -1,20 +1,27 @@
-import React, {RefObject, MouseEvent, FC} from 'react'
+import React, {RefObject, MouseEvent, FC, MutableRefObject} from 'react'
+import {useAppSelector} from "../../../redux/store";
 
 interface progressIP{
     progressBar: RefObject<HTMLDivElement>,
     progressed: RefObject<HTMLDivElement>,
-    widthOfDuration: number,
-    onclick: (event: MouseEvent<HTMLDivElement>) => void
+    audioElement: MutableRefObject<HTMLAudioElement>
 }
 
-export const ProgressBar: FC<progressIP> = ({progressBar,progressed,widthOfDuration,onclick}) => {
-  return (
-    <div
-    className='progress_bar' 
-    ref={progressBar} 
-    onClick={onclick}>
-     <div className='progressed' style={{width: `${widthOfDuration}%`}} ref={progressed}>
-     </div>
-   </div>
-  )
+export const ProgressBar: FC<progressIP> = ({progressBar, progressed, audioElement}) => {
+    const {widthOfDuration} = useAppSelector(state => state.player)
+
+    const rewindMusicHandler = (event: MouseEvent<HTMLDivElement>) => {
+        if(audioElement.current && progressBar.current && progressed.current){
+            audioElement.current.currentTime = ((event.nativeEvent.offsetX / progressBar.current.offsetWidth) * audioElement.current.duration)
+        }
+    }
+
+    return (
+        <div
+            className='progress_bar'
+            ref={progressBar}
+            onClick={rewindMusicHandler}>
+            <div className='progressed' style={{width: `${widthOfDuration}%`}} ref={progressed}/>
+        </div>
+    )
 }

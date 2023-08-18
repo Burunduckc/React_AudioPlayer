@@ -1,79 +1,68 @@
 //React
-import React, {ChangeEvent, useState, SyntheticEvent} from 'react'
+import React, {SyntheticEvent} from 'react'
 //UI
 import { ErrorMessage, Form, Player, LocalHistory } from '../imports'
+//redux
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {forwardForForm, setToForm, setViewAudio} from "../../redux/slice/inputSlice";
 //styles
 import './Input.css'
 
 export const Input = () => {
-    const [userLink, setUserLink] = useState<string>('')
-    const [viewAudio, setViewAudio] = useState<boolean>(true)
-    const [errorMessage, setErrorMessage] = useState(false)
+    const {errorMessage, userLink, viewAudio} = useAppSelector((state) => state.input)
+    const dispatch = useAppDispatch()
 
-
-    const sumbitFormHendler = (event: SyntheticEvent) => {
-        
+    const submitFormHandler = (event: SyntheticEvent) => {
         event.preventDefault()
         if(userLink.trim().length && userLink.indexOf('https://') === 0){
-            setViewAudio(false)
+            dispatch(setViewAudio(false))
             saveSearchHistory(userLink)
         } else {
-            setViewAudio(true)
-            setErrorMessage(true)
+                dispatch(forwardForForm())
         }
     }
 
     const saveSearchHistory = (search: string) => {
         const searchHistoryString = localStorage.getItem('searchHistory');
-        let searchHistory = searchHistoryString !== null ? JSON.parse(searchHistoryString) : [];      
+        let searchHistory = searchHistoryString !== null ? JSON.parse(searchHistoryString) : [];
         searchHistory.unshift(search);
 
         if (searchHistory.length > 4) {
-          searchHistory = searchHistory.slice(0, 4);
+            searchHistory = searchHistory.slice(0, 4);
         }
 
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-      };
+    };
 
 
     const returnToForm = () => {
-        setViewAudio(true)
-        setErrorMessage(false)
-        setUserLink('')
+        dispatch(setToForm())
     }
 
-    const clearErrorMessage = () => setErrorMessage(false)
 
-    const changeInputValue = (event: ChangeEvent<HTMLInputElement>) => setUserLink(event.target.value)
 
     return (
-    <div className='main__blockinput'>
-        {
-            viewAudio 
-            ? (
-        <>
-            <p className='main__text'>Insert the link</p>  
-                    <Form 
-                    submitFormHandler={sumbitFormHendler}
-                    userLink={userLink}
-                    changeUserLink={changeInputValue}
-                    />
-            <LocalHistory/>
-        </> 
-            )
-            : 
-            ( 
-                <>
-                    <p className='main__sos' onClick={() => returnToForm()}>← Back</p>
-                        <Player 
-                        value={userLink} 
-                        changeErrorMessage={setErrorMessage} 
-                        switchShowElements = {setViewAudio}
-                        />
-                </>       
-                  )
-        } 
-        {errorMessage && <ErrorMessage onclick={clearErrorMessage}/>}
-    </div>
+        <div className='main__blockinput'>
+            {
+                viewAudio
+                    ? (
+                        <>
+                            <p className='main__text'>Insert the link</p>
+                            <Form
+                                submitFormHandler={submitFormHandler}
+                            />
+                            <LocalHistory/>
+                        </>
+                    )
+                    :
+                    (
+                        <>
+                            <p className='main__sos' onClick={returnToForm}>← Back</p>
+                            <Player/>
+                        </>
+                    )
+            }
+            {errorMessage && <ErrorMessage/>}
+        </div>
   )
 }
