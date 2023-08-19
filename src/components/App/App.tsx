@@ -1,11 +1,11 @@
 import React from 'react';
-import { Input } from '../Input/Input';
+import { AudioFormBlock } from '../AudioFormBlock/AudioFormBlock';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Input/>
+      <AudioFormBlock/>
     </div>
   );
 }

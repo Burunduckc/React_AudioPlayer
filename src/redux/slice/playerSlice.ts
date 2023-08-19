@@ -1,10 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-interface initialIP{
+interface initialIP {
     minutes: number,
     seconds: number,
     widthOfDuration: number,
-    changeButton: boolean,}
+    changeButton: boolean,
+}
 
 const initialState: initialIP = {
     minutes: 0,
@@ -16,7 +17,7 @@ const initialState: initialIP = {
 const playerSlice = createSlice({
     name: 'player',
     initialState,
-    reducers:{
+    reducers: {
         setMinutes: (state, action) => {
             state.minutes = action.payload
         },

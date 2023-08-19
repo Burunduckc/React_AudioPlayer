@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {RootState} from "../store";
 
 interface formIp {
     userLink: string,
@@ -15,7 +16,7 @@ const initialState: formIp = {
 const inputSlice = createSlice({
     name: 'input',
     initialState,
-    reducers:{
+    reducers: {
         setUserLink: (state, action: PayloadAction<string>) => {
             state.userLink = action.payload
         },
@@ -25,7 +26,7 @@ const inputSlice = createSlice({
             state.errorMessage = false
         },
         setClearError: (state, action) => {
-             state.errorMessage = action.payload
+            state.errorMessage = action.payload
         },
         setViewAudio: (state, action) => {
             state.viewAudio = action.payload
@@ -36,6 +37,8 @@ const inputSlice = createSlice({
         }
     }
 })
+
+export const getFormState = (state: RootState) => state.input
 
 export const {setUserLink, setToForm, setClearError, setViewAudio, forwardForForm} = inputSlice.actions
 export default inputSlice.reducer;
