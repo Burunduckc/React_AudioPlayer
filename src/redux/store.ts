@@ -3,10 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import {useDispatch, TypedUseSelectorHook, useSelector} from "react-redux";
 import input from './slice/inputSlice'
 import player from './slice/playerSlice'
+import panorama from './slice/panoramaSlice'
+import controlSpeed from './slice/ControlSpeedSlice'
 export const store = configureStore({
     reducer: {
         input,
-        player
+        player,
+        panorama,
+        controlSpeed
     },
 })
 

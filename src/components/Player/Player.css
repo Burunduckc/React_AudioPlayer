@@ -45,6 +45,9 @@
     display: flex;
     justify-content: space-between;
 }
+.main__range{
+    margin-right: 20px;
+}
 input[type=range]  {
     width: 200px;
     -webkit-appearance: none;

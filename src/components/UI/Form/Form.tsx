@@ -7,7 +7,6 @@ import {saveSearchHistory} from "../../../utils/formHandlres/localHistoryFnc/loc
 //img
 import arrow from '../../../assets/icon.svg'
 
-
 export const Form: FC = () => {
     const {userLink} = useAppSelector(getFormState)
     const dispatch = useAppDispatch()

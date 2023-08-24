@@ -1,10 +1,12 @@
 import React, {FC, MutableRefObject} from 'react'
 //redux
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {setChangeButton, setMinutes, setSeconds, setWidthOfDuration} from "../../../redux/slice/playerSlice";
+//UI
+import {ControlSpeed} from "../ControlSpeed/ControlSpeed";
 //Img
 import btnBegin from '../../../assets/Play.svg'
 import btnStop from '../../../assets/Pause.svg'
-import {setChangeButton, setMinutes, setSeconds, setWidthOfDuration} from "../../../redux/slice/playerSlice";
 
 
 interface BtnIP {
@@ -43,11 +45,13 @@ export const ButtonForPlay: FC<BtnIP> = ({element}) => {
     const {changeButton} = useAppSelector(state => state.player)
 
     return (
-        <button
-            onClick={changeButton ? pauseMusicHandler : playMusicHandler}
-            className={`player__${changeButton ? 'btnStop' : 'btnBegin'}`}
-        >
-            <img src={changeButton ? btnStop : btnBegin} alt='ButtonForControlMusic'/>
-        </button>
+        <>
+                <button
+                    onClick={changeButton ? pauseMusicHandler : playMusicHandler}
+                    className={`player__${changeButton ? 'btnStop' : 'btnBegin'}`}
+                >
+                    <img src={changeButton ? btnStop : btnBegin} alt='ButtonForControlMusic'/>
+                </button>
+        </>
     )
 }

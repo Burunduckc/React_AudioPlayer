@@ -2,6 +2,7 @@
 import React, {FC, useRef, useEffect, MutableRefObject} from 'react'
 //UI
 import {ButtonForPlay, Volume, TimeOfAudio, Music, ProgressBar} from '../imports'
+import {ControlSpeed} from "../UI/ControlSpeed/ControlSpeed";
 //redux
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {forwardForForm} from "../../redux/slice/inputSlice";
@@ -41,6 +42,9 @@ export const Player: FC = () => {
             <div className='main__buttonBlock'>
                 <div>
                     {<ButtonForPlay element={audioElement}/>}
+                </div>
+                <div>
+                    <ControlSpeed audioElement={audioElement}/>
                 </div>
             </div>
             <Music audioElement={audioElement}/>

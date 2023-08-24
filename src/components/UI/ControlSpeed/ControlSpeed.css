@@ -1,0 +1,23 @@
+.select-speed{
+    position: relative;
+    cursor: pointer;
+    margin-left: 8px;
+    padding: 4px;
+    margin-top: 10px;
+    width: 50px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.10);
+    font-size: 20px;
+    font-weight: 300;
+    color: #A4A3A4;
+}
+.speed-block{
+    position: absolute;
+    width: 91px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    right: 55px;
+}
+.active_select{
+    color: #1B191C;
+}
