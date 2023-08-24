@@ -2,8 +2,6 @@ import React, {FC, MutableRefObject} from 'react'
 //redux
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {setChangeButton, setMinutes, setSeconds, setWidthOfDuration} from "../../../redux/slice/playerSlice";
-//UI
-import {ControlSpeed} from "../ControlSpeed/ControlSpeed";
 //Img
 import btnBegin from '../../../assets/Play.svg'
 import btnStop from '../../../assets/Pause.svg'
