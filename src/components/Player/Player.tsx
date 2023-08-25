@@ -12,8 +12,8 @@ import './Player.css'
 //Component
 export const Player: FC = () => {
     const value = useAppSelector(state => state.input.userLink)
+    const {seconds, minutes} = useAppSelector(state => state.player)
     const dispatch = useAppDispatch()
-
     //Refs
     const audioElement = useRef() as MutableRefObject<HTMLAudioElement>;
     const progressed = useRef<HTMLDivElement>(null)
@@ -21,8 +21,6 @@ export const Player: FC = () => {
 
     //variables
     const audioObj = new Audio(value);
-
-
     //Effects
 
     useEffect(() => {
@@ -37,6 +35,38 @@ export const Player: FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value])
 
+    useEffect(() => {
+
+        const arrowLeftHandle = () => audioElement.current.currentTime -= 5
+        const arrowRightHandle = () => audioElement.current.currentTime += 5
+
+        const keyShortCats: { [key: string]: () => void } = {
+            ArrowLeft: arrowLeftHandle,
+            ArrowRight: arrowRightHandle
+        }
+
+        const keyDownHandle = (event: KeyboardEvent) => {
+            const action = keyShortCats[event.key]
+            if (action) {
+                action()
+            }
+        }
+        // switch (event.key) {
+        //     case 'ArrowLeft':
+        //         audioElement.current.currentTime -= 5
+        //         break;
+        //     case 'ArrowRight':
+        //         audioElement.current.currentTime += 5
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        window.addEventListener('keydown', keyDownHandle)
+        return () => window.removeEventListener('keydown', keyDownHandle)
+    }, [seconds, minutes])
+
+    //Component
     return (
         <div className='main__video'>
             <div className='main__buttonBlock'>

@@ -1,7 +1,7 @@
 import {FC, MutableRefObject} from "react";
 //redux
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
-import {setPlaybackRate, showDropdownBox} from "../../../redux/slice/ControlSpeedSlice";
+import {setPlaybackRate, showDropdownBox, getControlSpeed} from "../../../redux/slice/ControlSpeedSlice";
 //styles
 import './ControlSpeed.css'
 //img
@@ -14,7 +14,7 @@ interface controlIP {
 }
 
 export const ControlSpeed: FC<controlIP> = ({audioElement}) => {
-    const {dropdownBox, playbackRate} = useAppSelector(state => state.controlSpeed)
+    const {dropdownBox, playbackRate} = useAppSelector(getControlSpeed)
     const dispatch = useAppDispatch()
 
     const playbackRateHandler = (newPlayBackRate: number) => {
@@ -26,14 +26,24 @@ export const ControlSpeed: FC<controlIP> = ({audioElement}) => {
     return (
         <>
             <button
-                style={{marginRight: '20px', border: 'none', cursor: 'pointer', background: 'none', fontSize: '20px', color: '#1B191C'}}
-                onClick={changeDropdownBoxHandler}><img src={menu} alt={'menu'}/></button>
+                style={{
+                    marginRight: '20px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    background: 'none',
+                    color: '#1B191C'
+                }}
+                onClick={changeDropdownBoxHandler}
+            >
+                <img src={menu} alt={'menu'}/>
+            </button>
             <div className={'speed-block'}>
                 {dropdownBox && (
                     speeds.map((speeds) => (
                         <div className={`select-speed ${playbackRate === speeds ? 'active_select' : ''}`}
                              key={speeds}
-                             onClick={() => playbackRateHandler(speeds)}>
+                             onClick={() => playbackRateHandler(speeds)}
+                        >
                             {speeds}
                         </div>))
                 )}
