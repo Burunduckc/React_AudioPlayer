@@ -1,4 +1,4 @@
-.history__localuserlink {
+.history__local_user-link {
     display: inline-block;
     max-width: 543px;
     overflow: hidden;
@@ -25,6 +25,16 @@
 }
 .history__blockoflinkusers{
   position: relative;
+}
+@media (max-width: 960px) {
+    .history__localList{
+        max-width: 69.5%;
+    }
+}
+@media (max-width: 480px) {
+    .history__localList{
+        max-width: 100%;
+    }
 }
 @media (max-width: 320px) {
   .history__localuserlink{

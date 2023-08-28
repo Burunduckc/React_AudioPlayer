@@ -1,0 +1,33 @@
+.progress_bar {
+    height: 4px;
+    width: 570px;
+    background: #ADACAD;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.progressed {
+    width: 50%;
+    height: 4px;
+    background: #FFF;
+    border-radius: 6px;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.progressed::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: -7px;
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    background-color: #FFF;
+}
+
+@media (max-width: 320px) {
+    .progress_bar {
+        width: 267px;
+    }
+}

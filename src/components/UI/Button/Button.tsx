@@ -5,7 +5,8 @@ import {setChangeButton, setMinutes, setSeconds, setWidthOfDuration} from "../..
 //Img
 import btnBegin from '../../../assets/Play.svg'
 import btnStop from '../../../assets/Pause.svg'
-
+//styles
+import './Button.css'
 
 interface BtnIP {
     element: MutableRefObject<HTMLAudioElement>
@@ -46,7 +47,7 @@ export const ButtonForPlay: FC<BtnIP> = ({element}) => {
         <>
                 <button
                     onClick={changeButton ? pauseMusicHandler : playMusicHandler}
-                    className={`player__${changeButton ? 'btnStop' : 'btnBegin'}`}
+                    className={`player__${changeButton ? 'btn-stop' : 'btn-begin'}`}
                 >
                     <img src={changeButton ? btnStop : btnBegin} alt='ButtonForControlMusic'/>
                 </button>

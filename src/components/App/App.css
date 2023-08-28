@@ -2,16 +2,9 @@
     margin-left: 261px;
     margin-top: 171px;
 }
-.main__text{
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-.main__blockinput{
-    transition: 0.6s all;
-}
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
     .App{
-        margin-left: 12px;
-        margin-top: 12px;
+        margin-left: 0px;
+        margin-top: 50px;
     }
 }

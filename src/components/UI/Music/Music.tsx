@@ -8,8 +8,11 @@ interface musicIP{
 export const Music: FC<musicIP> = ({audioElement}) => {
     const {userLink} = useAppSelector(state => state.input)
     return (
-        <audio ref={audioElement} preload='auto' id='audio-player'>
-            <source src={`${userLink}`} type='audio/mpeg'/>
-        </audio>
+        <>
+            <audio ref={audioElement} preload='auto' id='audio-player'>
+                <source src={`${userLink}`} type='audio/mpeg'/>
+            </audio>
+        </>
+
     )
 }

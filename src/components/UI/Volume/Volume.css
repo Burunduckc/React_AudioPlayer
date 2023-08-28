@@ -1,0 +1,31 @@
+.volume__container {
+    margin-right: 20px;
+    position: relative;
+}
+
+#volume__background{
+    appearance: none;
+    width: 150px;
+    height: 2px;
+    padding: 0;
+}
+#main__background::-webkit-slider-thumb{
+    appearance: none;
+    width: 16px;
+    height: 12px;
+    background: #1B191C;
+}
+#main__background::-webkit-slider-thumb:hover{
+    background: #1B191C;
+}
+.volume__line{
+    position: absolute;
+    top: 70%;
+    left: 0;
+    width: 46%;
+    height: 2px;
+    background-color: black;
+    transform: translateY(-50%);
+    z-index: 0;
+}
+

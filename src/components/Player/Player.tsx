@@ -68,25 +68,28 @@ export const Player: FC = () => {
 
     //Component
     return (
-        <div className='main__video'>
-            <div className='main__buttonBlock'>
-                <div>
-                    {<ButtonForPlay element={audioElement}/>}
-                </div>
-                <div>
-                    <ControlSpeed audioElement={audioElement}/>
-                </div>
-            </div>
+        <div style={{maxWidth: '610px'}}>
             <Music audioElement={audioElement}/>
-            <ProgressBar
-                progressBar={progressBar}
-                progressed={progressed}
-                audioElement={audioElement}
-            />
-            <div className='main__blockForEnd'>
-                <Volume element={audioElement}/>
-                <TimeOfAudio/>
+            <div className='player__video'>
+                <div className='player__buttons-block'>
+                    <div>
+                        {<ButtonForPlay element={audioElement}/>}
+                    </div>
+                    <div>
+                        <ControlSpeed audioElement={audioElement}/>
+                    </div>
+                </div>
+                <ProgressBar
+                    progressBar={progressBar}
+                    progressed={progressed}
+                    audioElement={audioElement}
+                />
+                <div className='player__end-block'>
+                    <Volume element={audioElement}/>
+                    <TimeOfAudio/>
+                </div>
             </div>
         </div>
+
     )
 }

@@ -1,6 +1,8 @@
 import React, {RefObject, MouseEvent, FC, MutableRefObject} from 'react'
+//redux
 import {useAppSelector} from "../../../redux/store";
-
+//styles
+import './ProgressBar.css'
 interface progressIP {
     progressBar: RefObject<HTMLDivElement>,
     progressed: RefObject<HTMLDivElement>,

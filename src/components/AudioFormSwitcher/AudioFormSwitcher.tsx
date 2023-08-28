@@ -3,6 +3,7 @@ import React from "react";
 import {Form, LocalHistory, Player} from "../imports";
 import {getFormState} from "../../redux/slice/inputSlice";
 import {ForwardText} from "../UI/ForwardText/ForwardText";
+import {TextOfLink} from "../UI/TextOfLink/TextOfLink";
 //Redux
 import {useAppSelector} from "../../redux/store";
 
@@ -16,7 +17,7 @@ export const AudioFormSwitcher = () => {
                 viewAudio
                     ? (
                         <>
-                            <p className='main__text'>Insert the link</p>
+                            <TextOfLink/>
                             <Form/>
                             <LocalHistory/>
                         </>

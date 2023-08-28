@@ -6,6 +6,9 @@ import {forwardForForm, getFormState, setUserLink, setViewAudio} from "../../../
 import {saveSearchHistory} from "../../../utils/formHandlres/localHistoryFnc/localHistory";
 //img
 import arrow from '../../../assets/icon.svg'
+//styles
+import './Form.css'
+import {setShowHistory, showHistoryHandler} from "../../../redux/slice/historySlice";
 
 export const Form: FC = () => {
     const {userLink} = useAppSelector(getFormState)
@@ -21,8 +24,11 @@ export const Form: FC = () => {
         }
     }
 
-    const changeInputValue = (event: ChangeEvent<HTMLInputElement>) => dispatch(setUserLink(event.target.value))
-
+    const changeInputValue = (event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setUserLink(event.target.value))
+        dispatch(showHistoryHandler())
+    }
+    const showUserHistory = () => dispatch(setShowHistory())
 
     return (
         <form
@@ -34,10 +40,11 @@ export const Form: FC = () => {
                 type="text"
                 value={userLink}
                 onChange={changeInputValue}
+                onClick={showUserHistory}
                 placeholder='https://'
-                className='main__input'
+                className='main__form-input'
             />
-            <button type='submit' className='main__button'>
+            <button type='submit' className='main__form-button'>
                 <img src={arrow} alt="arrow"/>
             </button>
         </form>

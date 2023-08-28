@@ -1,3 +1,17 @@
-.control_block{
-    display: flex;
+.player__btn-begin {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+}
+
+.player__btn-stop {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: inherit;
+    background-color: transparent;
+    border: none;
 }

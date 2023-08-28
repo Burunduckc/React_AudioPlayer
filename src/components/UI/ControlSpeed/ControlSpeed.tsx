@@ -20,6 +20,7 @@ export const ControlSpeed: FC<controlIP> = ({audioElement}) => {
     const playbackRateHandler = (newPlayBackRate: number) => {
         dispatch(setPlaybackRate(newPlayBackRate))
         audioElement.current.playbackRate = newPlayBackRate
+        dispatch(showDropdownBox())
     }
 
     const changeDropdownBoxHandler = () => dispatch(showDropdownBox())

@@ -1,0 +1,8 @@
+.main__sos {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1B191C;
+    transition: 0.2s all;
+    cursor: pointer;
+    width: 100px;
+}

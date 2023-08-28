@@ -5,12 +5,14 @@ import input from './slice/inputSlice'
 import player from './slice/playerSlice'
 import panorama from './slice/panoramaSlice'
 import controlSpeed from './slice/ControlSpeedSlice'
+import history from './slice/historySlice'
 export const store = configureStore({
     reducer: {
         input,
         player,
         panorama,
-        controlSpeed
+        controlSpeed,
+        history
     },
 })
 
