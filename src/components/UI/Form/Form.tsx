@@ -2,13 +2,13 @@ import React, {FC, SyntheticEvent, ChangeEvent} from 'react'
 //redux
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {forwardForForm, getFormState, setUserLink, setViewAudio} from "../../../redux/slice/inputSlice";
+import {setShowHistory, showHistoryHandler} from "../../../redux/slice/historySlice";
 //utils
 import {saveSearchHistory} from "../../../utils/formHandlres/localHistoryFnc/localHistory";
 //img
 import arrow from '../../../assets/icon.svg'
 //styles
 import './Form.css'
-import {setShowHistory, showHistoryHandler} from "../../../redux/slice/historySlice";
 
 export const Form: FC = () => {
     const {userLink} = useAppSelector(getFormState)
