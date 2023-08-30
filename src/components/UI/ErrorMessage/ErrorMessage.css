@@ -20,6 +20,19 @@
 .main__text-error {
     margin-left: 12px;
 }
+
 .main__close-error {
     cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .main__block-error {
+        width: 350px;
+    }
+}
+
+@media (max-width: 320px) {
+    .main__block-error {
+        width: 250px;
+    }
 }
